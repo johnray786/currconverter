@@ -1,70 +1,37 @@
 import inquirer from "inquirer";
-let dataValue = {
+const exchangeRates = {
     PKR: 1,
-    USD: 325,
-    SAR: 85,
-    GBP: 400,
-    AED: 85,
+    USD: 1 / 325,
+    SAR: 1 / 85,
+    GBP: 1 / 400,
+    AED: 1 / 85, // 1 AED = 1/85 PKR
 };
-let dataInput = await inquirer.prompt([
+const dataInput = await inquirer.prompt([
     {
         name: "fromCurrency",
         type: "list",
         message: "Convert From?:",
-        choices: ["USD", "SAR", "GBP", "AED", "PKR"]
+        choices: ["USD", "SAR", "GBP", "AED", "PKR"],
     },
     {
         name: "toCurrency",
         type: "list",
         message: "Convert To?:",
-        choices: ["PKR", "USD", "SAR", "GBP", "AED"]
+        choices: ["PKR", "USD", "SAR", "GBP", "AED"],
     },
     {
         name: "currencyAmount",
         type: "number",
-        message: "How Much Amount Is To Be Converted?:"
+        message: "How Much Amount Is To Be Converted?:",
     },
 ]);
-const cuFrom = dataInput.fromCurrency;
-const cuTo = dataInput.toCurrency;
-const toAmount = dataInput.currencyAmount;
-if (cuFrom == "USD" && cuTo == "PKR") {
-    const final = dataValue.USD * toAmount;
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "SAR" && cuTo == "PKR") {
-    const final = dataValue.SAR * toAmount;
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "GBP" && cuTo == "PKR") {
-    const final = dataValue.GBP * toAmount;
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "AED" && cuTo == "PKR") {
-    const final = dataValue.AED * toAmount;
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "PKR" && cuTo == "PKR") {
-    const final = dataValue.PKR * toAmount;
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "PKR" && cuTo == "USD") {
-    const final = parseFloat((toAmount / dataValue.USD).toFixed(2));
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "PKR" && cuTo == "SAR") {
-    const final = parseFloat((toAmount / dataValue.SAR).toFixed(2));
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "PKR" && cuTo == "GBP") {
-    const final = parseFloat((toAmount / dataValue.GBP).toFixed(2));
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
-}
-else if (cuFrom == "PKR" && cuTo == "AED") {
-    const final = parseFloat((toAmount / dataValue.AED).toFixed(2));
-    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+const fromCurrency = dataInput.fromCurrency;
+const toCurrency = dataInput.toCurrency;
+const currencyAmount = dataInput.currencyAmount;
+if (exchangeRates[fromCurrency] && exchangeRates[toCurrency]) {
+    const final = (currencyAmount * exchangeRates[toCurrency]) / exchangeRates[fromCurrency];
+    console.log(`${fromCurrency}.${currencyAmount} to ${toCurrency} is ${toCurrency}.${final.toFixed(2)}`);
 }
 else {
     console.log(`Wrong Currency Input`);
 }
-;
