@@ -12,7 +12,7 @@ let dataInput = await inquirer.prompt([
         name: "fromCurrency",
         type:"list",
         message:"Convert From?:",
-        choices: ["PKR","USD","SAR","GBP","AED"]
+        choices: ["USD","SAR","GBP","AED","PKR"]
     },
     {
         name: "toCurrency",
@@ -33,6 +33,27 @@ const cuTo=dataInput.toCurrency;
 const toAmount = dataInput.currencyAmount;
 
 if(cuFrom=="USD"&&cuTo=="PKR"){
-    const final = dataValue.USD*toAmount
-    console.log(`Coversion From ${cuFrom} to ${cuTo} is ${final}`);
+    const final = dataValue.USD*toAmount;
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
 }
+else if (cuFrom=="SAR"&&cuTo=="PKR"){
+    const final = dataValue.SAR*toAmount;
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else if (cuFrom=="GBP"&&cuTo=="PKR"){
+    const final = dataValue.GBP*toAmount;
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else if (cuFrom=="AED"&&cuTo=="PKR"){
+    const final = dataValue.AED*toAmount;
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else if (cuFrom=="PKR"&&cuTo=="PKR"){
+    const final = dataValue.PKR*toAmount;
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else if (cuFrom=="PKR"&&cuTo=="USD"){
+    const final = parseFloat((toAmount/dataValue.USD).toFixed(2));
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else{console.log(`Wrong Currency Input`)};
