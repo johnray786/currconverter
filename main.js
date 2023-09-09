@@ -52,6 +52,18 @@ else if (cuFrom == "PKR" && cuTo == "USD") {
     const final = parseFloat((toAmount / dataValue.USD).toFixed(2));
     console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
 }
+else if (cuFrom == "PKR" && cuTo == "SAR") {
+    const final = parseFloat((toAmount / dataValue.SAR).toFixed(2));
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else if (cuFrom == "PKR" && cuTo == "GBP") {
+    const final = parseFloat((toAmount / dataValue.GBP).toFixed(2));
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
+else if (cuFrom == "PKR" && cuTo == "AED") {
+    const final = parseFloat((toAmount / dataValue.AED).toFixed(2));
+    console.log(`${cuFrom}.${toAmount} to ${cuTo} is ${cuTo}.${final}`);
+}
 else {
     console.log(`Wrong Currency Input`);
 }
