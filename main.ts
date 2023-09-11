@@ -5,7 +5,8 @@ const exchangeRates: Record<string, number> = {
   USD: 1 / 325, // 1 USD = 1/325 PKR
   SAR: 1 / 85,  // 1 SAR = 1/85 PKR
   GBP: 1 / 400, // 1 GBP = 1/400 PKR
-  AED: 1 / 85,  // 1 AED = 1/85 PKR
+  AED: 1 / 85,  // 1 AED = 1/85 PKR 
+  // these all are denominated in pkr to simplify the calculation
 };
 
 const dataInput = await inquirer.prompt([
